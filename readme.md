@@ -38,8 +38,8 @@ The first route should be set to default.
 If no default is provided, the first route in the list will be used as default.
 
 ```javascript
-import Router from 'simple-html-inpage-router'
-let router =  Router(
+import SimpleHtmlInPageRouter from 'simple-html-inpage-router'
+let router =  SimpleHtmlInPageRouter(
     {
         routes: [
             {
@@ -60,18 +60,18 @@ let router =  Router(
                 element: document.getElementById("element-4"),
             }
         ],
-        onPopOff: (curr, next) => {
+        onPop: (curr, next) => {
                     //here you can hide the previous element.
                     curr.classList.add("hide");
                     //here you can show the next element to push to the stack.
                     next.classList.remove("hide");
                 },
-        onNextRoute: (curr, next) {
+        onPush: (curr, next) {
                     //here you can hide the element to pop.
                     curr.classList.add("hide");
                     //here you can show the element to diplay as current route.
                     next.classList.remove("hide");
-                },
+                }
     }
     function gotoTwo(){
         router.pushRoute("2");

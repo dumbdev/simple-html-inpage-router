@@ -1,28 +1,18 @@
-type Route = {
-    path: string;
-    element: HTMLElement;
-    default?: boolean
+import Route from "./core/types/route";
+import Config from "./core/types/config";
 
-}
-
-type Config = {
-    routes: Array<Route>;
-    onPopOff: (currentRouteElement: HTMLElement, NextRouteELement: HTMLElement) => void;
-    onNextRoute: (currentRouteElement:HTMLElement, NextRouteElement: HTMLElement) => void;
-}
-
- class Router {
+class Router {
     private routes: Array<Route>;
 
     private loadedRoutes: Array<string>;
-    private onPopOff: (currentRouteElement: HTMLElement, NextRouteELement: HTMLElement) => void;
-    private onNextRoute: (currentRouteElement: HTMLElement, NextRouteElement: HTMLElement) => void;
+    private onPop: (currentRouteElement: HTMLElement, NextRouteELement: HTMLElement) => void;
+    private onPush: (currentRouteElement: HTMLElement, NextRouteElement: HTMLElement) => void;
 
     constructor(config: Config) {
         this.routes = config.routes;
         this.loadedRoutes = [this.getDefaultRouteObject().path];
-        this.onPopOff = config.onPopOff;
-        this.onNextRoute = config.onNextRoute;
+        this.onPop = config.onPop;
+        this.onPush = config.onPush;
     }
 
 
@@ -57,7 +47,7 @@ type Config = {
     pushRoute(path: string) {
         let routeToPush = this.getRouteObjectByPath(path);
         let routeToSitAt = this.getRouteObjectByPath(this.loadedRoutes[this.loadedRoutes.length - 1]);
-        this.onNextRoute(routeToSitAt.element, routeToPush.element);
+        this.onPush(routeToSitAt.element, routeToPush.element);
         this.loadedRoutes.push(routeToPush.path);
     }
 
@@ -67,7 +57,7 @@ type Config = {
         }
         let routeToPop = this.getRouteObjectByPath(this.loadedRoutes[this.loadedRoutes.length - 1]);
         let routeToLoad = this.getRouteObjectByPath(this.loadedRoutes[this.loadedRoutes.length - 2]);
-        this.onPopOff(routeToPop.element, routeToLoad.element);
+        this.onPop(routeToPop.element, routeToLoad.element);
         this.loadedRoutes.pop();
     }
 
