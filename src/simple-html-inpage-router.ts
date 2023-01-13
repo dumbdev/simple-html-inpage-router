@@ -1,7 +1,7 @@
 import Route from "./core/types/route";
 import Config from "./core/types/config";
 
-class Router {
+class SimpleHtmlInpageRouter {
     private routes: Array<Route>;
 
     private loadedRoutes: Array<string>;
@@ -63,4 +63,5 @@ class Router {
 
 }
 
-export default Router;
+export default SimpleHtmlInpageRouter;
+Object.assign(module.exports, SimpleHtmlInpageRouter);
