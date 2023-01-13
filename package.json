@@ -6,6 +6,6 @@
     "webpack-cli": "^5.0.1"
   },
   "scripts": {
-    "prod": "webpack"
+    "build": "webpack"
   }
 }

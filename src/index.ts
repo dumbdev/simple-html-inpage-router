@@ -11,7 +11,7 @@ type Config = {
     onNextRoute: (currentRouteElement:HTMLElement, NextRouteElement: HTMLElement) => void;
 }
 
-export default class Router {
+ class Router {
     private routes: Array<Route>;
 
     private loadedRoutes: Array<string>;
@@ -72,3 +72,5 @@ export default class Router {
     }
 
 }
+
+export default Router;
