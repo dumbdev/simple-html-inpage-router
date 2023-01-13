@@ -1,10 +1,20 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "sourceMap": false,
-    "outDir": "dist",
+    "target": "ES2015",
+    "module": "umd",
     "moduleResolution": "node",
+    "declaration": true,
+    "outDir": "dist",
+    "lib": [
+      "es5",
+      "es6",
+      "dom"
+    ],
+    "sourceMap": true
   },
+  "include": [
+    "src/**/*.ts"
+  ],
   "exclude": [
     "node_modules",
     "dist"

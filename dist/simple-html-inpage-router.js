@@ -1,1 +1,65 @@
-!function(t,e){"object"==typeof exports&&"object"==typeof module?module.exports=e():"function"==typeof define&&define.amd?define([],e):"object"==typeof exports?exports.SimpleHtmlInPageRouter=e():t.SimpleHtmlInPageRouter=e()}(self,(()=>(()=>{"use strict";var t={};return(()=>{var e=t,o=function(){function t(t){this.routes=t.routes,this.loadedRoutes=[this.getDefaultRouteObject().path],this.onPop=t.onPop,this.onPush=t.onPush}return t.prototype.getDefaultRouteObject=function(){for(var t in this.routes)if(!0===this.routes[t].default)return this.routes[t];return this.routes[0]},t.prototype.getRouteObjectByPath=function(t){for(var e in this.routes)if(this.routes[e].path===t)return this.routes[e];throw Error("Route not found in the config 😢.")},t.prototype.getDefaultRoutePath=function(){return this.getDefaultRouteObject().path},t.prototype.getCurrentRoutePath=function(){return this.loadedRoutes[this.loadedRoutes.length-1]},t.prototype.pushRoute=function(t){var e=this.getRouteObjectByPath(t),o=this.getRouteObjectByPath(this.loadedRoutes[this.loadedRoutes.length-1]);this.onPush(o.element,e.element),this.loadedRoutes.push(e.path)},t.prototype.popRoute=function(t){if(1===this.loadedRoutes.length)throw Error("Only route in stack. Can't pop it off too 😊.");var e=this.getRouteObjectByPath(this.loadedRoutes[this.loadedRoutes.length-1]),o=this.getRouteObjectByPath(this.loadedRoutes[this.loadedRoutes.length-2]);this.onPop(e.element,o.element),this.loadedRoutes.pop()},t}();e.default=o})(),t.default})()));
+(function (factory) {
+    typeof define === 'function' && define.amd ? define(factory) :
+    factory();
+})((function () { 'use strict';
+
+    (function (factory) {
+        if (typeof module === "object" && typeof module.exports === "object") {
+            var v = factory(require, exports);
+            if (v !== undefined) module.exports = v;
+        }
+        else if (typeof define === "function" && define.amd) {
+            define(["require", "exports"], factory);
+        }
+    })(function (require, exports) {
+        Object.defineProperty(exports, "__esModule", { value: true });
+        class SimpleHtmlInpageRouter {
+            constructor(config) {
+                this.routes = config.routes;
+                this.loadedRoutes = [this.getDefaultRouteObject().path];
+                this.onPop = config.onPop;
+                this.onPush = config.onPush;
+            }
+            getDefaultRouteObject() {
+                for (let key in this.routes) {
+                    if (this.routes[key].default === true) {
+                        return this.routes[key];
+                    }
+                }
+                return this.routes[0];
+            }
+            getRouteObjectByPath(path) {
+                for (let key in this.routes) {
+                    if (this.routes[key].path === path) {
+                        return this.routes[key];
+                    }
+                }
+                throw Error("Route not found in the config 😢.");
+            }
+            getDefaultRoutePath() {
+                return this.getDefaultRouteObject().path;
+            }
+            getCurrentRoutePath() {
+                return this.loadedRoutes[this.loadedRoutes.length - 1];
+            }
+            pushRoute(path) {
+                let routeToPush = this.getRouteObjectByPath(path);
+                let routeToSitAt = this.getRouteObjectByPath(this.loadedRoutes[this.loadedRoutes.length - 1]);
+                this.onPush(routeToSitAt.element, routeToPush.element);
+                this.loadedRoutes.push(routeToPush.path);
+            }
+            popRoute(path) {
+                if (this.loadedRoutes.length === 1) {
+                    throw Error("Only route in stack. Can't pop it off too 😊.");
+                }
+                let routeToPop = this.getRouteObjectByPath(this.loadedRoutes[this.loadedRoutes.length - 1]);
+                let routeToLoad = this.getRouteObjectByPath(this.loadedRoutes[this.loadedRoutes.length - 2]);
+                this.onPop(routeToPop.element, routeToLoad.element);
+                this.loadedRoutes.pop();
+            }
+        }
+        exports.default = SimpleHtmlInpageRouter;
+        Object.assign(module.exports, SimpleHtmlInpageRouter);
+    });
+
+}));
