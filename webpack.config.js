@@ -15,7 +15,9 @@ module.exports = {
     output: {
         filename: 'simple-html-inpage-router.js',
         path: path.resolve(__dirname, 'dist'),
-        library: "SimpleHtmlInPageRouter"
+        library: "SimpleHtmlInPageRouter",
+        libraryTarget: 'umd',
+        libraryExport: 'default'
     },
     resolve: {
         extensions: ['.tsx', '.ts', '.jsx', '.js']

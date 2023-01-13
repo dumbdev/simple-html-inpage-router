@@ -1,4 +1,18 @@
 {
+  "name": "simple-html-inpage-router",
+  "version": "0.0.1",
+  "description": "Library to navigate between HTML elements in a single document.",
+  "main": "simple-html-inpage-router.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dumbdev/simple-html-inpage-router.git"
+  },
+  "author": "Syed Najam Abbas (https://najamabbas.me)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dumbdev/simple-html-inpage-router/issues"
+  },
+  "homepage": "https://github.com/dumbdev/simple-html-inpage-router#readme",
   "devDependencies": {
     "ts-loader": "^9.4.2",
     "typescript": "^4.9.4",

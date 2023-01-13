@@ -1,7 +1,12 @@
 {
   "compilerOptions": {
     "target": "es5",
-//    "module": "AMD",
-    "sourceMap": false
-  }
+    "sourceMap": false,
+    "outDir": "dist",
+    "moduleResolution": "node",
+  },
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
 }
