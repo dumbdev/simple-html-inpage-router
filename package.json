@@ -1,6 +1,6 @@
 {
   "name": "simple-html-inpage-router",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "Library to navigate between HTML elements in a single document.",
   "author": "Syed Najam Abbas (https://najamabbas.me)",
   "license": "MIT",
