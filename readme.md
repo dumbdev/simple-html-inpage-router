@@ -74,19 +74,19 @@ let router =  SimpleHtmlInPageRouter(
                 }
     }
     function gotoTwo(){
-        router.pushRoute("2");
+        router.push("2");
     }
 
     function gotoThree(){
-        router.pushRoute("3");
+        router.push("3");
     }
 
     function gotoFour(){
-        router.pushRoute("4");
+        router.push("4");
     }
 
     function goBack(){
-        router.popRoute();
+        router.pop();
     }
 );
 ```

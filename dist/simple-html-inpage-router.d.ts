@@ -9,7 +9,8 @@ declare class SimpleHtmlInpageRouter {
     private getRouteObjectByPath;
     getDefaultRoutePath(): string;
     getCurrentRoutePath(): string;
-    pushRoute(path: string): void;
-    popRoute(path: String): void;
+    push(path: string): void;
+    pop(): void;
+    popUntil(targetPath: any): void;
 }
 export default SimpleHtmlInpageRouter;

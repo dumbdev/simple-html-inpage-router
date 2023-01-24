@@ -1,12 +1,13 @@
 import Route from "./core/types/route";
 import Config from "./core/types/config";
+import DOMElement from "./core/types/utils";
 
 class SimpleHtmlInpageRouter {
     private routes: Array<Route>;
 
     private loadedRoutes: Array<string>;
-    private onPop: (currentRouteElement: HTMLElement, NextRouteELement: HTMLElement) => void;
-    private onPush: (currentRouteElement: HTMLElement, NextRouteElement: HTMLElement) => void;
+    private onPop: (currentRouteElement: DOMElement, NextRouteELement: DOMElement) => void;
+    private onPush: (currentRouteElement: DOMElement, NextRouteElement: DOMElement) => void;
 
     constructor(config: Config) {
         this.routes = config.routes;
@@ -44,14 +45,14 @@ class SimpleHtmlInpageRouter {
     }
 
 
-    pushRoute(path: string) {
+    push(path: string) {
         let routeToPush = this.getRouteObjectByPath(path);
         let routeToSitAt = this.getRouteObjectByPath(this.loadedRoutes[this.loadedRoutes.length - 1]);
         this.onPush(routeToSitAt.element, routeToPush.element);
         this.loadedRoutes.push(routeToPush.path);
     }
 
-    popRoute(path: String) {
+    pop() {
         if (this.loadedRoutes.length === 1) {
             throw Error("Only route in stack. Can't pop it off too 😊.");
         }
@@ -61,6 +62,12 @@ class SimpleHtmlInpageRouter {
         this.loadedRoutes.pop();
     }
 
+    popUntil(targetPath) {
+        let loadedLength = this.loadedRoutes.length;
+        while (this.loadedRoutes[loadedLength - 1] !== targetPath){
+            this.pop();
+        }
+    }
 }
 
 export default SimpleHtmlInpageRouter;

@@ -1,6 +1,8 @@
+import DOMElement from "./utils";
+
 type Route = {
     path: string;
-    element: HTMLElement;
+    element: DOMElement;
     default?: boolean
 
 }
